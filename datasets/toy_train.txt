@@ -1,0 +1,3 @@
+This is the first train sentence .			A
+this is the second, but not last example .			B 
+That is the last train sentence .			A
