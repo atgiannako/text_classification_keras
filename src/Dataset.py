@@ -77,10 +77,10 @@ class Dataset(object):
 					embedding_matrix[key] = embedding_vector
 		return embedding_matrix
 
-	def prepare_data(self):
+	def prepare_data(self, sep="\t\t\t"):
 		# loading training data in primitive format (string)
 		print("Loading training data...")
-		train_texts, train_labels = self.__load_data(self.train_set)
+		train_texts, train_labels = self.__load_data(self.train_set, sep)
 		print('Found %s datapoints for training data.' % len(train_texts))
 		# tokenizing and indexing data
 		print("Tokenizing and indexing training data...")
@@ -101,7 +101,7 @@ class Dataset(object):
 		y_train = to_categorical(np.asarray(train_labels))
 
 		# loading test data in primitive format (string)
-		test_texts, test_labels = self.__load_data(self.test_set)
+		test_texts, test_labels = self.__load_data(self.test_set, sep)
 		print('Found %s datapoints for testing data.' % len(test_texts))
 		test_texts_to_id = tokenizer.texts_to_sequences(test_texts)
 		x_test = pad_sequences(test_texts_to_id, maxlen=self.max_seq_length, padding='post', truncating='post')
